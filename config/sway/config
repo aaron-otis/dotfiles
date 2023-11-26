@@ -18,7 +18,7 @@ set $term sakura
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_path | wofi --show=dmenu --conf=$HOME/.config/wofi/config --style=$HOME/.config/wofi/style.css | xargs swaymsg exec --
+set $menu wofi --show=run --conf=$HOME/.config/wofi/config --style=$HOME/.config/wofi/style.css | xargs swaymsg exec --
 
 set $idle $HOME/.config/sway/scripts/idle.sh
 set $lock $HOME/.config/sway/scripts//lock.sh
@@ -219,7 +219,7 @@ bindsym $mod+r mode "resize"
 #    }
 #}
 
-# Lock screen
+# Lock screen, change lock_button to desired key
 set $lock_button XF86LaunchA
 bindsym $lock_button exec --no-startup-id $lock
 
