@@ -13,3 +13,6 @@
           - python3
           - python-is-python3
           - fish
+          - fd-find
+          - ripgrep
+          - bat
