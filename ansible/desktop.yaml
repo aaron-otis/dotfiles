@@ -40,10 +40,6 @@
   hosts: localhost
   connection: local
   tasks:
-    - name: print debug messages
-      debug:
-        msg: "/home/{{ ansible_user_id }}/.config/sway/"
-
     - name: Copy sway configuration files
       ansible.builtin.copy:
         src: "{{ playbook_dir }}/../config/sway/"
