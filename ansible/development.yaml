@@ -4,7 +4,7 @@
   connection: local
   become: true
   tasks:
-    - name: Installs development related applications via apt
+    - name: Install development related applications via apt
       ansible.builtin.apt:
         update_cache: true
         cache_valid_time: 3600
@@ -12,10 +12,12 @@
         name:
           - neovim
 
-    - name: Installs development related applications via pip
+    - name: Install pynvim via pip
       ansible.builtin.pip:
-        name:
-          - black
+        name: pynvim
+        state: latest
+        umask: "0022"
+        extra_args: "--break-system-packages"
 
 - name: Copy configuration files for development applications
   hosts: localhost
@@ -25,5 +27,14 @@
       ansible.builtin.copy:
         src: "{{ playbook_dir }}/../config/nvim"
         dest: "/home/{{ ansible_user_id }}/.config/nvim"
-        mode: '0640'
+        mode: '0744'
 
+    - name: Install python black via pipx
+      community.general.pipx:
+        name: black
+        state: latest
+
+    - name: Install tox via pipx
+      community.general.pipx:
+        name: tox
+        state: latest

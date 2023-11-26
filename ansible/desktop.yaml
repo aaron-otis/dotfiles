@@ -40,30 +40,26 @@
   hosts: localhost
   connection: local
   tasks:
-    - name: print debug messages
-      debug:
-        msg: "/home/{{ ansible_user_id }}/.config/sway/"
-
     - name: Copy sway configuration files
       ansible.builtin.copy:
         src: "{{ playbook_dir }}/../config/sway/"
         dest: "/home/{{ ansible_user_id }}/.config/sway/"
-        mode: '0640'
+        mode: '0744'
 
     - name: Copy swaylock configuration files
       ansible.builtin.copy:
         src: "{{ playbook_dir }}/../config/swaylock/"
         dest: "/home/{{ ansible_user_id }}/.config/swaylock/"
-        mode: '0640'
+        mode: '0744'
 
     - name: Copy waybar configuration files
       ansible.builtin.copy:
         src: "{{ playbook_dir }}/../config/waybar/"
         dest: "/home/{{ ansible_user_id }}/.config/waybar/"
-        mode: '0640'
+        mode: '0744'
 
     - name: Copy wofi configuration files
       ansible.builtin.copy:
         src: "{{ playbook_dir }}/../config/wofi/"
         dest: "/home/{{ ansible_user_id }}/.config/wofi/"
-        mode: '0640'
+        mode: '0744'
