@@ -25,5 +25,5 @@
       ansible.builtin.copy:
         src: "{{ playbook_dir }}/../config/nvim"
         dest: "/home/{{ ansible_user_id }}/.config/nvim"
-        mode: '0640'
+        mode: '0644'
 
