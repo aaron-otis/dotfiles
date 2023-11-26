@@ -4,7 +4,7 @@
   connection: local
   become: true
   tasks:
-    - name: Installs sway and related applications
+    - name: Installs system applications
       ansible.builtin.apt:
         update_cache: true
         cache_valid_time: 3600
