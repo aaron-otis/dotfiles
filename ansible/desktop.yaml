@@ -10,6 +10,7 @@
         cache_valid_time: 3600
         state: latest
         name:
+          - brightnessctl
           - mako-notifier
           - sakura
           - sway

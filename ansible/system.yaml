@@ -16,3 +16,4 @@
           - fd-find
           - ripgrep
           - bat
+          - pulseaudio-utils
