@@ -1,5 +1,5 @@
 ---
-- name: Playbook to install and configure the desktop environment
+- name: Install and configure the desktop environment
   hosts: localhost
   connection: local
   become: true
@@ -17,6 +17,31 @@
           - swaylock
           - waybar
           - wofi
+
+    - name: Installs audio and video applications
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+        state: latest
+        name:
+          - mpv
+          - imv
+
+    - name: Clean apt cache
+      ansible.builtin.apt:
+        autoclean: true
+
+    - name: Remove unused packages
+      ansible.builtin.apt:
+        autoremove: true
+
+- name: Copy configuration files for desktop applications
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: print debug messages
+      debug:
+        msg: "/home/{{ ansible_user_id }}/.config/sway/"
 
     - name: Copy sway configuration files
       ansible.builtin.copy:
@@ -41,20 +66,3 @@
         src: "{{ playbook_dir }}/../config/wofi/"
         dest: "/home/{{ ansible_user_id }}/.config/wofi/"
         mode: '0640'
-
-    - name: Installs audio and video applications
-      ansible.builtin.apt:
-        update_cache: true
-        cache_valid_time: 3600
-        state: latest
-        name:
-          - mpv
-          - imv
-
-    - name: Clean apt cache
-      ansible.builtin.apt:
-        autoclean: true
-
-    - name: Remove unused packages
-      ansible.builtin.apt:
-        autoremove: true
