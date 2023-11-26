@@ -1,0 +1,19 @@
+---
+- name: Install system packages
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: Install system applications
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+        state: latest
+        name:
+          - python3
+          - python-is-python3
+          - fish
+          - fd-find
+          - ripgrep
+          - bat
+          - pulseaudio-utils

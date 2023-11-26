@@ -1,6 +1,7 @@
 ---
-- name: Playbook to install and configure the desktop environment
-  hosts: local
+- name: Install and configure the desktop environment
+  hosts: localhost
+  connection: local
   become: true
   tasks:
     - name: Installs sway and related applications
@@ -9,7 +10,8 @@
         cache_valid_time: 3600
         state: latest
         name:
-          - mako
+          - brightnessctl
+          - mako-notifier
           - sakura
           - sway
           - swayidle
@@ -33,3 +35,35 @@
     - name: Remove unused packages
       ansible.builtin.apt:
         autoremove: true
+
+- name: Copy configuration files for desktop applications
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: print debug messages
+      debug:
+        msg: "/home/{{ ansible_user_id }}/.config/sway/"
+
+    - name: Copy sway configuration files
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../config/sway/"
+        dest: "/home/{{ ansible_user_id }}/.config/sway/"
+        mode: '0640'
+
+    - name: Copy swaylock configuration files
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../config/swaylock/"
+        dest: "/home/{{ ansible_user_id }}/.config/swaylock/"
+        mode: '0640'
+
+    - name: Copy waybar configuration files
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../config/waybar/"
+        dest: "/home/{{ ansible_user_id }}/.config/waybar/"
+        mode: '0640'
+
+    - name: Copy wofi configuration files
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../config/wofi/"
+        dest: "/home/{{ ansible_user_id }}/.config/wofi/"
+        mode: '0640'
