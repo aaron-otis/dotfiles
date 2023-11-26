@@ -1,6 +1,7 @@
 ---
 - name: Playbook to install and configure the desktop environment
-  hosts: local
+  hosts: localhost
+  connection: local
   become: true
   tasks:
     - name: Installs sway and related applications
@@ -9,7 +10,7 @@
         cache_valid_time: 3600
         state: latest
         name:
-          - mako
+          - mako-notifier
           - sakura
           - sway
           - swayidle

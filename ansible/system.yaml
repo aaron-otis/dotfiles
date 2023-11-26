@@ -1,0 +1,15 @@
+---
+- name: Playbook to install system packages
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: Installs sway and related applications
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+        state: latest
+        name:
+          - python3
+          - python-is-python3
+          - fish

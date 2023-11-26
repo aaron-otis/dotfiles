@@ -1,0 +1,24 @@
+---
+- name: Playbook to install system packages
+  hosts: localhost
+  connection: local
+  become: true
+  tasks:
+    - name: Installs development related applications via apt
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+        state: latest
+        name:
+          - neovim
+
+    - name: Copy neovim configuration files
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../config/nvim"
+        dest: "/home/{{ ansible_user_id }}/.config/nvim"
+        mode: '0640'
+
+    - name: Installs development related applications via pip
+      ansible.builtin.pip:
+        name:
+          - black
