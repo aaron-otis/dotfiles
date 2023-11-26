@@ -44,22 +44,34 @@
       ansible.builtin.copy:
         src: "{{ playbook_dir }}/../config/sway/"
         dest: "/home/{{ ansible_user_id }}/.config/sway/"
-        mode: '0744'
+        mode: '0754'
+
+    - name: Make sway scripts executable
+      ansible.builtin.file:
+        dest: "{{ item }}"
+        mode: '0754'
+      with_fileglob:
+        - "/home/{{ ansible_user_id }}/.config/sway/scripts/*"
 
     - name: Copy swaylock configuration files
       ansible.builtin.copy:
         src: "{{ playbook_dir }}/../config/swaylock/"
         dest: "/home/{{ ansible_user_id }}/.config/swaylock/"
-        mode: '0744'
+        mode: '0754'
 
     - name: Copy waybar configuration files
       ansible.builtin.copy:
         src: "{{ playbook_dir }}/../config/waybar/"
         dest: "/home/{{ ansible_user_id }}/.config/waybar/"
-        mode: '0744'
+        mode: '0754'
+
+    - name: Make waybar scripts executable
+      ansible.builtin.file:
+        dest: "/home/{{ ansible_user_id }}/.config/waybar/start.sh"
+        mode: '0754'
 
     - name: Copy wofi configuration files
       ansible.builtin.copy:
         src: "{{ playbook_dir }}/../config/wofi/"
         dest: "/home/{{ ansible_user_id }}/.config/wofi/"
-        mode: '0744'
+        mode: '0754'
