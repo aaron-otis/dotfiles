@@ -4,7 +4,7 @@
   connection: local
   become: true
   tasks:
-    - name: Installs sway and related applications
+    - name: Install sway and related applications
       ansible.builtin.apt:
         update_cache: true
         cache_valid_time: 3600
@@ -19,7 +19,7 @@
           - waybar
           - wofi
 
-    - name: Installs audio and video applications
+    - name: Install audio and video applications
       ansible.builtin.apt:
         update_cache: true
         cache_valid_time: 3600
@@ -27,6 +27,24 @@
         name:
           - mpv
           - imv
+
+    - name: Install office applications
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+        state: latest
+        name:
+          - libreoffice
+          - texlive
+          - thunderbird
+
+    - name: Install security applications
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+        state: latest
+        name:
+          - keepassxc
 
     - name: Clean apt cache
       ansible.builtin.apt:
