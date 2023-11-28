@@ -27,24 +27,7 @@
         name:
           - mpv
           - imv
-
-    - name: Install office applications
-      ansible.builtin.apt:
-        update_cache: true
-        cache_valid_time: 3600
-        state: latest
-        name:
-          - libreoffice
-          - texlive
-          - thunderbird
-
-    - name: Install security applications
-      ansible.builtin.apt:
-        update_cache: true
-        cache_valid_time: 3600
-        state: latest
-        name:
-          - keepassxc
+          - yt-dlp
 
     - name: Clean apt cache
       ansible.builtin.apt:
