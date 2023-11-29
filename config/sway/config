@@ -17,6 +17,15 @@ set $menu wofi --show=run --conf=$HOME/.config/wofi/config --style=$HOME/.config
 set $idle $HOME/.config/sway/scripts/idle.sh
 set $lock $HOME/.config/sway/scripts//lock.sh
 
+#exec_always swaymsg "border pixel 2"
+default_border none
+default_floating_border none
+titlebar_border_thickness 0
+gaps outer 4
+gaps inner 4
+smart_gaps on
+smart_borders on
+
 include /etc/sway/config-vars.d/*
 
 ### Output configuration
@@ -229,6 +238,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 
 # Startup
 exec --no-startup-id nm-applet --indicator
+exec --no-startup-id blueman-applet --indicator
 exec_always --no-startup-id $HOME/.config/waybar/start.sh
 exec --no-startup-id mako
 exec_always $HOME/.config/sway/scripts/wallpaper.sh
