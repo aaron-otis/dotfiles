@@ -76,3 +76,9 @@
         src: "{{ playbook_dir }}/../config/wofi/"
         dest: "/home/{{ ansible_user_id }}/.config/wofi/"
         mode: '0754'
+
+    - name: Copy wofi configuration files
+      ansible.builtin.copy:
+        src: "{{ playbook_dir }}/../config/mako/"
+        dest: "/home/{{ ansible_user_id }}/.config/mako/"
+        mode: '0754'
