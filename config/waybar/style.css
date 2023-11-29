@@ -5,14 +5,14 @@
 }
 
 window#waybar {
-    background-color: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+    background-color: transparent;
     color: #ffffff;
     transition-property: background-color;
     transition-duration: .5s;
 }
 
 window#waybar.hidden {
+    background-color: transparent;
     opacity: 0.2;
 }
 
@@ -49,7 +49,7 @@ button:hover {
 }
 
 #workspaces button {
-    padding: 0 5px;
+    padding: 2px;
     background-color: transparent;
     color: #ffffff;
 }
@@ -65,6 +65,10 @@ button:hover {
 
 #workspaces button.urgent {
     background-color: #eb4d4b;
+}
+
+#workspaces {
+  margin-right: -8px;
 }
 
 #mode {
@@ -87,9 +91,12 @@ button:hover {
 #mode,
 #idle_inhibitor,
 #scratchpad,
+#language,
 #mpd {
     padding: 0 10px;
+    border: 0;
     color: #ffffff;
+    opacity: 0.8;
 }
 
 #window,
@@ -107,18 +114,25 @@ button:hover {
     margin-right: 0;
 }
 
+.modules-right {
+    border-radius: 12px;
+    background: #444444;
+}
+
 #clock {
-    background-color: #64727D;
 }
 
 #battery {
-    background-color: #ffffff;
-    color: #000000;
+    border: 0;
+    background: #444444;
+    color: #ffffff;
+    opacity: 0.8;
 }
 
 #battery.charging, #battery.plugged {
-    color: #ffffff;
-    background-color: #26A65B;
+    background: #444444;
+    color: #aaffaa;
+    opacity: 0.8;
 }
 
 @keyframes blink {
@@ -129,7 +143,7 @@ button:hover {
 }
 
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
+    /*background-color: #f53c3c;*/
     color: #ffffff;
     animation-name: blink;
     animation-duration: 0.5s;
@@ -168,13 +182,9 @@ label:focus {
 }
 
 #pulseaudio {
-    background-color: #f1c40f;
-    color: #000000;
 }
 
 #pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
 }
 
 #wireplumber {
@@ -209,7 +219,9 @@ label:focus {
 }
 
 #tray {
-    background-color: #2980b9;
+    background: #444444;
+    color: #ffffff;
+    opacity: 0.8;
 }
 
 #tray > .passive {
@@ -248,8 +260,6 @@ label:focus {
 }
 
 #language {
-    background: #00b093;
-    color: #740864;
     padding: 0 5px;
     margin: 0 5px;
     min-width: 16px;
