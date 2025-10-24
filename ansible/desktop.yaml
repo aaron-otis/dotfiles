@@ -54,6 +54,12 @@
       with_fileglob:
         - "/home/{{ ansible_user_id }}/.config/sway/scripts/*"
 
+    - name: Create wallpapers directory
+      ansible.builtin.file:
+        dest: "/home/{{ ansible_user_id }}/.local/share/wallpaper"
+        state: directory
+        mode: '0754'
+
     - name: Copy swaylock configuration files
       ansible.builtin.copy:
         src: "{{ playbook_dir }}/../config/swaylock/"
